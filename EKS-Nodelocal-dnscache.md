@@ -1,2 +1,79 @@
-# How to install NodeLocal DNSCache on EKS clusters
+# How do I install NodeLocal DNSCache on my Amazon EKS cluster?
+
+I want to install NodeLocal DNSCache on my Amazon Elastic Kubernetes Service (Amazon EKS) cluster.
+
+### Short description:
+This is a step by step guide about NodeLocal DNSCache installation on an EKS cluster.<br>
+*You need to use Linux shell to run the commands below*
+
+### Resolution:
+Delete the previous installation if it is necessary:
+```
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml
+```
+
+<br>Download the original NodeLocal DNSCache template:
+```
+wget https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml
+```
+
+<br>Modify the default parameters in the template:
+```
+PILLAR__DNS__SERVER=$(kubectl get svc kube-dns -n kube-system -o jsonpath={.spec.clusterIP})
+```
+```
+sed -i "s/__PILLAR__LOCAL__DNS__/169.254.20.10/g; s/__PILLAR__DNS__DOMAIN__/cluster.local/g; s/__PILLAR__DNS__SERVER__/$PILLAR__DNS__SERVER/g" nodelocaldns.yaml
+```
+
+<br>Apply the template:<br>
+```
+kubectl apply -f nodelocaldns.yaml
+```
+
+#### <br>NodeLocal DNSCache is installed, now let's check the installation.
+Check if NodeLocal DNSCache pods are running:
+```
+kubectl get pods -n kube-system | grep node-local-dns
+```
+
+<br>Run a pod and check if DNS resolution works:
+```
+kubectl run -i --tty busybox --image=busybox -- sh
+```
+```
+/ # nslookup -type=a amazon.com
+Server:         172.20.0.10
+Address:        172.20.0.10:53
+
+Non-authoritative answer:
+Name:   amazon.com
+Address: 176.32.103.205
+Name:   amazon.com
+Address: 54.239.28.85
+Name:   amazon.com
+Address: 205.251.242.103
+
+/ # nslookup -type=a kubernetes.default.svc.cluster.local
+Server:         172.20.0.10
+Address:        172.20.0.10:53
+
+Name:   kubernetes.default.svc.cluster.local
+Address: 172.20.0.1
+
+/ # exit
+```
+```
+kubectl delete pod busybox
+```
+
+#### <br>DNS query workflow with NodeLocal DNSCache.
+
+* Hit cache cases:
+  * `Pod → Local DNS Cache:`
+
+* Miss cache cases:
+  * Local (cluster.local) domain requests: `Pod → Local DNS Cache → CoreDNS`
+
+  * External (Internet) domain request: `Pod → Local DNS Cache → AmazonProvidedDNS`
+
 
