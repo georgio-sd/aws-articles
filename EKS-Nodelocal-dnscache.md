@@ -31,7 +31,7 @@ The `__PILLAR__CLUSTER__DNS__` and `__PILLAR__UPSTREAM__SERVERS__` parameters do
 kubectl apply -f nodelocaldns.yaml
 ```
 
-#### <br>NodeLocal DNSCache is installed, now let's check the installation.
+#### <br>NodeLocal DNSCache is installed, now let's check it.
 Check if NodeLocal DNSCache pods are running:
 ```
 kubectl get pods -n kube-system | grep node-local-dns
