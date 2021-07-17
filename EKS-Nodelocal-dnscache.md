@@ -76,6 +76,6 @@ kubectl delete pod busybox
 * Miss cache cases:
   * Local (cluster.local) domain requests: `Pod → NodeLocal DNSCache → CoreDNS`
 
-  * External (Internet) domain request: `Pod → NodeLocal DNSCache → VPC DNS Resolver`
+  * External (Internet) domain requests: `Pod → NodeLocal DNSCache → VPC DNS Resolver`
 
 
