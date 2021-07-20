@@ -32,10 +32,10 @@ nslookup -type=a aerserv-bc-us-east.bidswitch.net
 Server:         172.20.0.10
 Address:        172.20.0.10:53
 
+Non-authoritative answer:
 aerserv-bc-us-east.bidswitch.net        canonical name = bidcast-bcserver-gce-sc.bidswitch.net
 bidcast-bcserver-gce-sc.bidswitch.net   canonical name = bidcast-bcserver-gce-sc-multifo.bidswitch.net
 
-*** Can't find aerserv-bc-us-east.bidswitch.net: No answer
 ```
 
 #### <br>To fix it, we need to allow CoreDNS to make requests over TCP when UDP request failed.
