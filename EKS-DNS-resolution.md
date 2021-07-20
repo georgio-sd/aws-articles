@@ -35,7 +35,7 @@ bidcast-bcserver-gce-sc.bidswitch.net   canonical name = bidcast-bcserver-gce-sc
 / # wget aerserv-bc-us-east.bidswitch.net
 wget: bad address 'aerserv-bc-us-east.bidswitch.net'
 ```
-*** As you can see both commands failed. You can also try to resolve your `xyz.xyz` domain.
+*** As you can see, both the commands failed. You can also try to resolve your `xyz.xyz` domain.
 
 #### <br>To fix it, we need to allow CoreDNS to make requests over TCP when a UDP request failed.
 Modify CoreDNS config map:
