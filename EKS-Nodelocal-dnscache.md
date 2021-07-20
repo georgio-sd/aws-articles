@@ -8,6 +8,8 @@ This is a step by step guide about NodeLocal DNSCache installation on an EKS clu
 
 ### Resolution:
 #### Installation.
+(!) NodeLocal DNSCache uses CoreDNS. Do not delete CoreDNS, NodeLocal DNSCache will not work without it.
+
 Delete the previous NodeLocal DNSCache installation if it is necessary:
 ```
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml
