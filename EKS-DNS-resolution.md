@@ -38,7 +38,7 @@ bidcast-bcserver-gce-sc.bidswitch.net   canonical name = bidcast-bcserver-gce-sc
 
 ```
 
-#### <br>To fix it, we need to allow CoreDNS to make requests over TCP when UDP request failed.
+#### <br>To fix it, we need to allow CoreDNS to make requests over TCP when a UDP request failed.
 Modify CoreDNS config map:
 ```
 kubectl edit cm coredns -n kube-system
