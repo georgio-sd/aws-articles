@@ -1,6 +1,6 @@
 # Why some pods cannot resolve a specific domain name on my Amazon EKS cluster?
 
-I noticed that some pods cannot resolve `xyz.xyz` domain names on my Amazon Elastic Kubernetes Service (Amazon EKS) cluster. 
+I noticed that some pods cannot resolve `xyz.xyz` domain name on my Amazon Elastic Kubernetes Service (Amazon EKS) cluster. 
 Other domain names are OK, the issue is only with `xyz.xyz`. When I resolve this domain on the cluster nodes, it resolves with no issue.
 
 ### Short description:
