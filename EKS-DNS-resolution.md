@@ -6,7 +6,7 @@ Other domain names are OK, the issue is only with `xyz.xyz`. When I resolve this
 ### Short description:
 By default, CoreDNS follows the client protocol when talking to the upstream servers. If a client sent DNS request over UDP without the EDNS0 option, 
 and the upstream server sent a truncated response, CoreDNS doesn't retry the request over TCP. It also doesn't set the TC flag in the 
-response sent to the client. As a result, client ends up with a poetntially incomplete DNS response, and potentially fail to resolve 
+response sent to the client. As a result, client ends up with a potentially incomplete DNS response, and potentially fail to resolve 
 the hostname permanently.
 
 ### Resolution:
@@ -23,20 +23,19 @@ kubectl exec busybox -it -- sh
 
 <br>Then attempt to resolve for example this domain name:
 ```
-nslookup -type=a aerserv-bc-us-east.bidswitch.net
-```
-*** You can also resolve your `xyz.xyz`
-
-<br>You might see something like:
-```
+/ # nslookup -type=a aerserv-bc-us-east.bidswitch.net
 Server:         172.20.0.10
 Address:        172.20.0.10:53
 
 Non-authoritative answer:
 aerserv-bc-us-east.bidswitch.net        canonical name = bidcast-bcserver-gce-sc.bidswitch.net
 bidcast-bcserver-gce-sc.bidswitch.net   canonical name = bidcast-bcserver-gce-sc-multifo.bidswitch.net
-
 ```
+```
+/ # wget aerserv-bc-us-east.bidswitch.net
+wget: bad address 'aerserv-bc-us-east.bidswitch.net'
+```
+*** You can also resolve your `xyz.xyz`
 
 #### <br>To fix it, we need to allow CoreDNS to make requests over TCP when a UDP request failed.
 Modify CoreDNS config map:
@@ -53,7 +52,7 @@ kubectl edit cm coredns -n kube-system
 ...
 ```
 
-with this one:
+<br>with this one:
 ```
 ...
         prometheus :9153
@@ -64,12 +63,10 @@ with this one:
 ...
 ```
 
-Wait for a couple of minutes for the CoreDNS pods to reread the new config map and check if this resolved the issue:
+<br>Wait for a couple of minutes for the CoreDNS pods to reread the new config map and check if this resolved the issue:
 ```
 kubectl exec busybox -it -- sh
 ```
-
-
 ```
 / # nslookup -type=a aerserv-bc-us-east.bidswitch.net
 Server:         172.20.0.10
