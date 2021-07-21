@@ -5,10 +5,9 @@ Images with tags `prod` or `dev` are used for my application and I do not want t
 To accomplish this we need to use the declarative nature of policy rules and their priorities.
 
 ### Resolution:
-Since ECR lifecycle policies have only one available action - `expire`, you can achieve the goal by creating a few rules. The first two rules with high priority 
-will expire images with tags `prod` or `dev` after a long period of time (let's say 30 years). The last rule with low priority will expire all other images in 60 days.
+Since ECR lifecycle policies have only one available action - `expire`, you can achieve the goal by creating a few rules. The first two rules with a high priority 
+will expire images with tags `prod` or `dev` after a long period of time (for example in 30 years). The last rule with a low priority will expire all other images in 60 days.
 
-For example:
 ```
 {
     "rules": [
@@ -53,6 +52,6 @@ For example:
     ]
 }
 ```
-The first two rules with a high priority will set expiration day for images with tags `prod` or `dev` to 30 years.
-The last rule with a low priority will not be able to delete images which matched the first two rules because it would violate them.
+The first two rules with a high priority set expiration period for images with tags `prod` or `dev` to 30 years.
+The last rule with a low priority will not be able to delete images, which matched the first two rules because it would violate them.
 
