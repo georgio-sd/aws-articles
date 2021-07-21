@@ -1,4 +1,4 @@
-# I want to keep images with tags `prod` or `dev` in an ECR repository, and delete all others in 60 days after pushing. How can I configure a lifecycle policy?
+# I want to make all images expire in 60 days except ones with tags `prod` or `dev`. How do I configure a lifecycle policy?
 Images with tags `prod` or `dev` are used for my application and I do not want to delete them but all other images should expire in 60 days.
 
 ### Short description:
