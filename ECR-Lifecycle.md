@@ -52,6 +52,6 @@ will expire images with tags `prod` or `dev` after a long period of time (for ex
     ]
 }
 ```
-The first two rules with a high priority set expiration period for images with tags `prod` or `dev` to 30 years.
-The last rule with a low priority will not be able to delete these images because it would violate the first two rules.
+The first two rules with a high priority (1 and 2) set expiration period for images with tags `prod` or `dev` to 30 years.
+The last rule with a low priority (10) will not be able to delete these images because it would violate the first two rules.
 
