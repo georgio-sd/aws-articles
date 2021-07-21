@@ -17,6 +17,7 @@ will expire images with tags `prod` or `dev` after a long period of time (for ex
             "selection": {
                 "tagStatus": "tagged",
                 "tagPrefixList": ["prod"],
+                "countType": "sinceImagePushed",
                 "countNumber": 10950,
                 "countUnit": "days"
             },
@@ -30,6 +31,7 @@ will expire images with tags `prod` or `dev` after a long period of time (for ex
             "selection": {
                 "tagStatus": "tagged",
                 "tagPrefixList": ["dev"],
+                "countType": "sinceImagePushed",
                 "countNumber": 10950,
                 "countUnit": "days"
             },
@@ -42,6 +44,7 @@ will expire images with tags `prod` or `dev` after a long period of time (for ex
             "description": "All other images will expire in 60 days",
             "selection": {
                 "tagStatus": "any",
+                "countType": "sinceImagePushed",
                 "countNumber": 60,
                 "countUnit": "days"
             },
