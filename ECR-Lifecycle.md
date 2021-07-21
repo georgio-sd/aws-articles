@@ -2,7 +2,7 @@
 Images with tags `prod` or `dev` are used for my application and I do not want to delete them but all other images should expire in 60 days.
 
 ### Short description:
-To accomplish this we need to use the declarative nature of policy rules and their priorities.
+This solution is based on the declarative nature of policy rules and their priorities.
 
 ### Resolution:
 Since ECR lifecycle policies have only one available action - `expire`, you can achieve the goal by creating three rules. The first two rules with a high priority 
