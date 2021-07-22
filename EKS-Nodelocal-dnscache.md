@@ -35,7 +35,7 @@ kubectl apply -f nodelocaldns.yaml
 ```
 
 #### <br>NodeLocal DNSCache is installed, now let's check it.
-Check if NodeLocal DNSCache pods are running:
+Check if the NodeLocal DNSCache pods are running:
 ```
 kubectl get pods -n kube-system | grep node-local-dns
 ```
