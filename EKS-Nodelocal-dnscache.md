@@ -5,7 +5,7 @@ I want to install NodeLocal DNSCache on my Amazon Elastic Kubernetes Service (Am
 ### Short description:
 This is a step by step guide about NodeLocal DNSCache installation on an EKS cluster.<br>
 *You need to use a Linux shell to run the commands below*
-*NodeLocal DNSCache uses CoreDNS. Do not delete CoreDNS, NodeLocal DNSCache will not work without it*
+<br>*NodeLocal DNSCache uses CoreDNS. Do not delete CoreDNS, NodeLocal DNSCache will not work without it*
 
 ### Resolution:
 #### Installation.
