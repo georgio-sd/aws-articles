@@ -37,8 +37,8 @@ wget: bad address 'aerserv-bc-us-east.bidswitch.net'
 ```
 *** As you can see, both the commands failed. You can also try to resolve your `xyz.xyz` domain.
 
-#### <br>To fix it, we need to allow CoreDNS to make requests over TCP when a UDP request failed.
-Modify CoreDNS config map:
+#### <br>To fix it, we need to allow CoreDNS to make requests over TCP if a UDP request failed.
+Modify the CoreDNS config map:
 ```
 kubectl edit cm coredns -n kube-system
 ```
