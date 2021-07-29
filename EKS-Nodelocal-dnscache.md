@@ -10,12 +10,7 @@ This is a NodeLocal DNSCache installation guide<br>
 ### Resolution:
 #### Installation.
 
-Delete the previous NodeLocal DNSCache installation if it is necessary:
-```
-kubectl delete -f https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml
-```
-
-<br>Download the original NodeLocal DNSCache template:
+Download the original NodeLocal DNSCache template:
 ```
 wget https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml
 ```
@@ -28,6 +23,11 @@ PILLAR__DNS__SERVER=$(kubectl get svc kube-dns -n kube-system -o jsonpath={.spec
 sed -i "s/__PILLAR__LOCAL__DNS__/169.254.20.10/g; s/__PILLAR__DNS__DOMAIN__/cluster.local/g; s/__PILLAR__DNS__SERVER__/$PILLAR__DNS__SERVER/g" nodelocaldns.yaml
 ```
 The `__PILLAR__CLUSTER__DNS__` and `__PILLAR__UPSTREAM__SERVERS__` parameters do not need to be replaced in the template.
+
+<br>Delete the previous NodeLocal DNSCache installation if it is necessary:
+```
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml
+```
 
 <br>Apply the template:<br>
 ```
