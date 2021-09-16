@@ -96,7 +96,7 @@ spec:
   type: NodePort
 ```
 
-Now, let's create an ALB using ingress:
+Now, let's create an internet-facing ALB using ingress:
 ```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
