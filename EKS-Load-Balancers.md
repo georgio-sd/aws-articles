@@ -2,17 +2,17 @@
 How can I create CLB/NLB/ALB in an EKS environment?
 
 ### Short description:
-EKS provides two loadbalancer controllers, which can be used to create and manage AWS load balancers. This article is a good introduction into EKS Load Balancers.
+EKS provides two loadbalancer controllers, which can be used to create and manage AWS load balancers. This article will provide simple examples on how to start working with Load Balancers and give you general understanding of available options.
 
 ### Resolution:
 In this example we are going to exepose nginx deployment using differet types of load balancers:
 ```
 kubectl create deployment nginx --image=nginx
 ```
-If you want to create a **Classic Load Balancer (CLB)** you have to use the Kubernetes in-tree (built-in) load balancer controller.  
+If you want to create a **Classic Load Balancer (CLB)** you have to use the [Kubernetes in-tree (built-in) load balancer controller](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer).<br>
 To do that, you need to create a loadbalancer service; a CLB will be created by default.
 
-For example this template will create an internet-facing CLB:
+For example, this template will create an internet-facing CLB:
 ```
 apiVersion: v1
 kind: Service
@@ -32,8 +32,8 @@ spec:
 ```
 
 If you want to create a **Network Load Balancer (NLB)** you have two options: 
-- Kubernetes in-tree (built-in) load balancer controller.
-- AWS Load Balancer Controller (has to be installed)
+- [Kubernetes in-tree (built-in) load balancer controller](https://kubernetes.io/docs/concepts/services-networking/service/#aws-nlb-support)
+- [AWS Load Balancer Controller (has to be installed)](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html)
 
 They both use loadbalancer services to create NLBs.
 This template will create an internet-facing NLB using the Kubernetes in-tree load balancer controller.
@@ -76,9 +76,9 @@ spec:
     app: nginx
   type: LoadBalancer
 ```
-*** `service.beta.kubernetes.io/aws-load-balancer-type: "external"` instructs Kubernetes to use AWS Load Balancer Controller.
+*** `service.beta.kubernetes.io/aws-load-balancer-type: "external"` [instructs Kubernetes to use AWS Load Balancer Controller.](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/service/nlb/#configuration)
 
-If you want to create an **Application Load Balancer (ALB)** you have to use the AWS Load Balancer Controller and specify ALB parameters using an ingress object.
+If you want to create an **Application Load Balancer (ALB)** you have to use the AWS Load Balancer Controller and specify ALB parameters using an [ingress object.](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/ingress/spec/)
 Before you create an ingress, you should expose the deployment using a nodeport service:
 ```
 apiVersion: v1
@@ -119,3 +119,4 @@ spec:
               port:
                 number: 80
 ```
+
