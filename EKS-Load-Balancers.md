@@ -12,13 +12,13 @@ kubectl create deployment nginx --image=nginx
 If you want to create a **Classic Load Balancer (CLB)** you have to use the Kubernetes in-tree (built-in) load balancer controller.  
 To do that, you need to create a loadbalancer service; a CLB will be created by default.
 
-For example this template will create an internal CLB:
+For example this template will create an internet-facing CLB:
 ```
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    service.beta.kubernetes.io/aws-load-balancer-internal: "false"
   name: nginx
   labels:
     app: nginx
