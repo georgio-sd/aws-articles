@@ -5,7 +5,7 @@ How can I create CLB/NLB/ALB in an EKS environment?
 EKS provides two loadbalancer controllers, which can be used to create and manage AWS load balancers. This article will provide simple examples on how to start working with Load Balancers and give you general understanding of available options.
 
 ### Resolution:
-In this example we are going to exepose nginx deployment using differet types of load balancers:
+In this article we are going to exepose nginx deployment using differet types of load balancers and load balancer controllers:
 ```
 kubectl create deployment nginx --image=nginx
 ```
