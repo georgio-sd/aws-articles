@@ -1,8 +1,8 @@
 # How can I create and manage load balancers in an EKS cluster?
-
+How can I create CLB/NLB/ALB in an EKS environment?
 
 ### Short description:
-EKS provides two loadbalancer controllers, which can be used to create and manage AWS load balancers. This article is a good introduction into the topic
+EKS provides two loadbalancer controllers, which can be used to create and manage AWS load balancers. This article is a good introduction into EKS Load Balancers.
 
 ### Resolution:
 In this example we are going to exepose nginx deployment using differet types of load balancers:
