@@ -76,7 +76,7 @@ spec:
     app: nginx
   type: LoadBalancer
 ```
-*** `service.beta.kubernetes.io/aws-load-balancer-type: external` instructs Kubernetes to use AWS Load Balancer Controller.
+*** `service.beta.kubernetes.io/aws-load-balancer-type: "external"` instructs Kubernetes to use AWS Load Balancer Controller.
 
 If you want to create an **Application Load Balancer (ALB)** you have to use the AWS Load Balancer Controller and specify ALB parameters using an ingress object.
 Before you create an ingress, you should expose the deployment using a nodeport service:
